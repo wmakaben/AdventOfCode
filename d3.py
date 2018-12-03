@@ -50,4 +50,4 @@ for line in file.read().splitlines():
 
 	if clean:
 		print input
-
+		break
