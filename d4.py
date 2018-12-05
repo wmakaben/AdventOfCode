@@ -1,12 +1,6 @@
 import operator
 # Part 1
 
-'''
-Get input
-Sort Alphabetically
-
-'''
-
 file = open("input/d4.txt", 'r')
 # file = open("input/d4-ex.txt", 'r')
 events = file.read().splitlines()
