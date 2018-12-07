@@ -30,9 +30,6 @@ def getClosestPoint (p, pList):
 		return "."
 	return idx
 
-def isPointInBounds (p, bMin, bMax):
-	return 
-
 # file = open("input/d6-ex.txt", 'r')
 file = open("input/d6.txt", 'r')
 
