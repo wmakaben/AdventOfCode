@@ -37,17 +37,51 @@ steps = graph.keys()
 steps.sort()
 
 order = ''
-sources = getSources(graph)
-sources.sort()
+sources = []
 
-while len(sources):
-	step = sources.pop(0)
-	graph = removeStep(graph, step)
+# sources = getSources(graph)
+# sources.sort()
+
+# while len(sources):
+# 	step = sources.pop(0)
+# 	graph = removeStep(graph, step)
+# 	sources = getSources(graph)
+# 	sources.sort()
+# 	order += step
+
+# print order
+
+# Part 2
+
+stepVal = {}
+for i in range(len(steps)):
+	stepVal[steps[i]] = i + 1
+valBase = 60
+count = 0
+wNum = 5
+workers = {}
+
+while len(graph) or len(workers):
+	# Remove completed steps
+	for k, v in workers.items():
+		if v == 0:
+			workers.pop(k)
+			graph = removeStep(graph, k)
+	# Add steps
 	sources = getSources(graph)
 	sources.sort()
-	order += step
+	while len(workers) <= wNum and len(sources):
+		step = sources.pop(0)
+		workers[step] = stepVal[step] + valBase
+		graph.pop(step, None)
+	print workers
+	# Increment count and decrement workers
+	count += 1
+	for k in workers.keys():
+		workers[k] -= 1
+	print workers
+	print
+print count
 
-print order
-
-
+# TODO: answer was 931 (count - 1)
 
