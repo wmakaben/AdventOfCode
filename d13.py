@@ -1,8 +1,8 @@
 import numpy as np
 
 # file = open("input/d13-ex.txt", 'r')
-# file = open("input/d13-ex-2.txt", 'r')
-file = open("input/d13.txt", 'r')
+file = open("input/d13-ex-2.txt", 'r')
+# file = open("input/d13.txt", 'r')
 
 '''
 left = -1
@@ -59,7 +59,8 @@ carts = {}
 tracks = []
 init(file, carts, tracks)
 
-crash = False
+crash = True
+# crash = False
 while not crash:
 	for cartKey in sorted(carts):
 		cart = carts[cartKey]
@@ -76,5 +77,27 @@ while not crash:
 		turnCart(cart, track)
 		carts[newCartKey] = carts.pop(cartKey)
 
+print sorted(carts)
+crash = False
+while not crash:
+	# TODO: sorted doesn't work
+	for cartKey in sorted(carts):
+		cart = carts.get(cartKey, False)
+		if cart:
+			track = tracks[cart[0][1]][cart[0][0]]
+			moveCart(cart, track)
+			newCartKey = str(cart[0])
 
-
+			if newCartKey in carts:
+				carts.pop(cartKey)
+				carts.pop(newCartKey)
+				# print carts
+				if len(carts) == 1:
+					print carts
+					crash = True
+					break
+			else:
+				track = tracks[cart[0][1]][cart[0][0]]
+				turnCart(cart, track)
+				carts[newCartKey] = carts.pop(cartKey)
+	print sorted(carts)
