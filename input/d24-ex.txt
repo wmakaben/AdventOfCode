@@ -1,0 +1,5 @@
+17 5390 i: w:radiation,bludgeoning 4507 fire 2
+989 1274 i:fire w:bludgeoning,slashing 25 slashing 3
+Infection:
+801 4706 i: w:radiation 116 bludgeoning 1
+4485 2961 i:radiation w:fire,cold 12 slashing 4

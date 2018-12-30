@@ -1,0 +1,21 @@
+3400 1430 i:fire,radiation,slashing w: 4 radiation 4
+138 8650 i:slashing,cold,radiation w:bludgeoning 576 slashing 16
+255 9469 i: w:radiation,fire 351 bludgeoning 8
+4145 2591 i:cold w:slashing 6 fire 12
+3605 10989 i: w: 26 fire 19
+865 11201 i: w: 102 slashing 10
+633 10092 i: w:slashing,radiation 150 slashing 11
+2347 3322 i: w: 12 cold 2
+7045 3877 i: w:radiation 5 bludgeoning 5
+1086 8626 i: w:radiation 69 slashing 13
+Infection:
+2152 12657 i: w:fire,cold 11 fire 18
+40 39458 i:radiation,fire,slashing w:bludgeoning 1519 slashing 7
+59 35138 i:radiation w:fire 1105 fire 15
+1569 51364 i: w:radiation 55 radiation 17
+929 23887 i: w:bludgeoning 48 cold 14
+5264 14842 i:cold,fire w:slashing,bludgeoning 4 bludgeoning 9
+1570 30419 i:fire w:radiation,cold 35 slashing 1
+1428 21393 i: w:radiation 29 cold 6
+1014 25717 i: w:fire 47 fire 3
+7933 29900 i:bludgeoning,radiation,slashing w: 5 slashing 20
