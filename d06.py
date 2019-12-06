@@ -20,5 +20,21 @@ totalOrbits = [0]
 orbits = {}
 for k in graph.keys():
 	getOrbits(graph, k, totalOrbits, orbits)
-print(orbits)
+# print(orbits)
 print(totalOrbits)
+
+# Part 2
+
+# TODO: find most common ancestor between YOU and SAN
+# - Get ancestor by tree level (# of orbits)
+y = graph["YOU"]
+s = graph["SAN"]
+steps = 0
+while y != s:
+	if orbits[y] <= orbits[s]:
+		s = graph[s]
+		steps += 1
+	elif orbits[s] < orbits[y]:
+		y = graph[y]
+		steps += 1
+print(steps)
