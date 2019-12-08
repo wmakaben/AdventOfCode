@@ -37,5 +37,27 @@ def getMinZeroLayer(image, w, h):
 			i += 1
 	return layers[minLayer]
 
-minLayer = getMinZeroLayer(image, width, height)
-print(minLayer, minLayer[1] * minLayer[2])
+# minLayer = getMinZeroLayer(image, width, height)
+# print(minLayer, minLayer[1] * minLayer[2])
+
+# Part 2
+
+def printImage(img, w, h):
+	layer = 0
+	image = ['2'] * (w * h)
+	for i in range(0, len(img)):
+		imgIdx = i % (w * h)
+		if image[imgIdx] == '2':
+			if img[i] == '0':
+				image[imgIdx] = ' '
+			else:
+				image[imgIdx] = img[i]
+	
+	i = 0
+	j = w
+	while j <= len(image):
+		print(' '.join(image[i:j]))
+		i = j
+		j += w
+
+printImage(image, width, height)
