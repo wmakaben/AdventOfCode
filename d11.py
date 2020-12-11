@@ -2,6 +2,8 @@ from copy import deepcopy
 
 file = open("input/d11.txt", 'r')
 lines = [list(line.rstrip().replace("L", "#")) for line in file]
+# lines = [list(line.rstrip()) for line in file]
+
 
 def printLayout (seats):
     for line in seats:
@@ -55,6 +57,47 @@ def partOne (seatLayout):
 
     getOccupied(layout)
 
-partOne(lines)
+# This is terrible but it'll do
+def getVisible (seats, i, j):
+    count = 0
+    dirs = range(-1, 2)
+    for xStep in dirs:
+        for yStep in dirs:
+            if xStep == 0 and yStep == 0:
+                continue
+            x = i + xStep
+            y = j + yStep
+            while 0 <= x < len(seats) and 0 <= y < len(seats[x]) and seats[x][y] == '.':
+                x += xStep
+                y += yStep
+            if 0 <= x < len(seats) and 0 <= y < len(seats[x]) and seats[x][y] == '#':
+                count += 1
+    return count
+
+def partTwo (seatLayout):
+    layout = deepcopy(seatLayout)
+
+    while True:
+        changed = False
+        newLayout = deepcopy(layout)
+
+        for i in range(0, len(layout)):
+            for j in range(0, len(layout[i])):
+                if layout[i][j] == '.':
+                    continue
+                adjacent = getVisible(layout, i, j)
+                if adjacent == 0 and newLayout[i][j] != '#':
+                    newLayout[i][j] = '#'
+                    changed = True
+                elif adjacent > 4 and newLayout[i][j] != 'L':
+                    newLayout[i][j] = 'L'
+                    changed = True
+        if changed == False:
+            break
+        layout = newLayout
+        
+    getOccupied(layout)
 
 
+# partOne(lines)
+partTwo(lines)
