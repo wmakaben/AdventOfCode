@@ -15,10 +15,7 @@ rDirs = {
 }
 
 def move (currPos, dir, steps):
-    newPos = []
-    for i in range(2):
-        newPos.append(currPos[i] + (dirs[dir][i] * steps))
-    return newPos
+    return [cp + (d * steps) for cp, d in zip(currPos, dirs[dir])]
 
 def partOne ():
     currDir = 0
@@ -28,7 +25,6 @@ def partOne ():
         line = line.rstrip()
         i = line[:1]
         v = int(line[1:])
-        print(i, v)
         if i == "R":
             currDir = (currDir + v) % 360
         elif i == "L":
@@ -39,4 +35,35 @@ def partOne ():
             pos = move(pos, i, v)
     print(pos, (abs(pos[0]) + abs(pos[1])))
 
-partOne()
+def swapAndNegate (pos, idx):
+    newPos = list(reversed(pos))
+    newPos[idx] = newPos[idx] * -1
+    return newPos
+
+# Only accepts degrees of 90, 180, 270
+def rotate (pos, dir, deg):
+    if deg == 180:
+        return [p * -1 for p in pos]
+    elif (dir == "L" and deg == 90) or (dir == "R" and deg == 270):
+        return swapAndNegate(pos, 0)
+    elif (dir == "R" and deg == 90) or (dir == "L" and deg == 270):
+        return swapAndNegate(pos, 1)
+
+def partTwo ():
+    sPos = [0, 0]
+    wDist = [10, 1]
+    for line in file:
+        line = line.rstrip()
+        i = line[:1]
+        v = int(line[1:])
+        if i == "R" or i == "L":
+            wDist = rotate(wDist, i, v)
+        elif i == "F":
+            sPos = [s + (v * w) for s, w in zip(sPos, wDist)]
+        else:
+            wDist = move(wDist, i, v)
+        # print(i, v, "\t", sPos, wDist)
+    print(sPos, (abs(sPos[0]) + abs(sPos[1])))
+
+# partOne()
+partTwo()
